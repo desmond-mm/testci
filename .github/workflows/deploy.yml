@@ -8,7 +8,6 @@ jobs:
   DeployStaging:
     name: Deploy to Staging
     if: github.event.ref == 'refs/heads/uat'
-    needs: [Build]
     runs-on: ubuntu-latest
     environment:
       name: Staging
@@ -19,7 +18,6 @@ jobs:
 
   DeployProd:
     name: Deploy to Production
-    needs: [DeployStaging]
     runs-on: ubuntu-latest
     environment:
       name: Production
