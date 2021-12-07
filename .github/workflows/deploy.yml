@@ -14,7 +14,7 @@ jobs:
         run: echo Hello, world!
   DeployStaging:
     name: Deploy to Staging
-    if: github.event.ref == 'refs/heads/uat'
+    if: github.event_name == 'pull_request' && github.event.ref == 'refs/heads/uat'
     needs: [Build]
     runs-on: ubuntu-latest
     environment:
@@ -26,7 +26,7 @@ jobs:
 
   DeployProd:
     name: Deploy to Production
-    if: github.event.ref == 'refs/heads/master'
+    if: github.event_name == 'pull_request' && github.event.ref == 'refs/heads/master'
     needs: [Build]
     runs-on: ubuntu-latest
     environment:
