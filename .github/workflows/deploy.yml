@@ -5,26 +5,6 @@ on:
     branches: [ master, uat ]
 
 jobs:
-  Build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Compile
-        run: echo Hello, world!
-
-  DeployDev:
-    name: Deploy to Dev
-    if: github.event_name == 'pull_request'
-    needs: [Build]
-    runs-on: ubuntu-latest
-    environment:
-      name: Development
-      url: 'http://dev.myapp.com'
-    steps:
-      - name: Deploy
-        run: echo I am deploying!
-
   DeployStaging:
     name: Deploy to Staging
     if: github.event.ref == 'refs/heads/uat'
